@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">commitLayout</string>
+    <string name="main_ment">엄빠를 위한 컴퓨터 가이드</string>
+    <string name="main_ment2">사용방법 보기</string>
+</resources>
