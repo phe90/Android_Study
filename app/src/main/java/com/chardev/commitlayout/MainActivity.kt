@@ -3,37 +3,38 @@ package com.chardev.commitlayout
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.CompoundButton
 import androidx.core.widget.addTextChangedListener
-import com.chardev.commitlayout.databinding.ActivityMainBinding
-import com.chardev.commitlayout.databinding.CheckCheckBinding
-import com.chardev.commitlayout.databinding.MamafafaMainBinding
-import com.chardev.commitlayout.databinding.RadioBtnStudyBinding
+import com.chardev.commitlayout.databinding.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 //    val binding by lazy { MamafafaMainBinding.inflate(layoutInflater) }
     //val binding by lazy { RadioBtnStudyBinding.inflate(layoutInflater) }
-    val binding by lazy{CheckCheckBinding.inflate(layoutInflater)}
-    val listener by lazy {CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+//    val binding by lazy{CheckCheckBinding.inflate(layoutInflater)}
+//    val listener by lazy {CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
 //        when(compoundButton.id){
 //            R.id.checkBox -> Log.d("chk1", "chk1선택")
 //            R.id.checkBox2 -> Log.d("chk2", "chk2선택")
 //            R.id.checkBox3 -> Log.d("chk3", "chk3선택")
 //        }
-        if(isChecked){
-            when(buttonView.id){
-                R.id.checkBox -> Log.d("chk1", "chk1 chk")
-                R.id.checkBox2 -> Log.d("chk2", "chk2 chk")
-                R.id.checkBox3 -> Log.d("chk3", "chk3 chk")
-            }
-        }else{
-            when(buttonView.id){
-                R.id.checkBox -> Log.d("chk1", "chk1 chkfa")
-                R.id.checkBox2 -> Log.d("chk2", "chk2 chkfa")
-                R.id.checkBox3 -> Log.d("chk3", "chk3 chkfa")
-            }
-        }
-    }}
+//        if(isChecked){
+//            when(buttonView.id){
+//                R.id.checkBox -> Log.d("chk1", "chk1 chk")
+//                R.id.checkBox2 -> Log.d("chk2", "chk2 chk")
+//                R.id.checkBox3 -> Log.d("chk3", "chk3 chk")
+//            }
+//        }else{
+//            when(buttonView.id){
+//                R.id.checkBox -> Log.d("chk1", "chk1 chkfa")
+//                R.id.checkBox2 -> Log.d("chk2", "chk2 chkfa")
+//                R.id.checkBox3 -> Log.d("chk3", "chk3 chkfa")
+//            }
+//        }
+//    }}
+
+    val binding by lazy { ProgressbarBinding.inflate(layoutInflater)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +55,24 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-        binding.checkBox.setOnCheckedChangeListener(listener)
-        binding.checkBox2.setOnCheckedChangeListener(listener)
-        binding.checkBox3.setOnCheckedChangeListener(listener)
+//        binding.checkBox.setOnCheckedChangeListener(listener)
+//        binding.checkBox2.setOnCheckedChangeListener(listener)
+//        binding.checkBox3.setOnCheckedChangeListener(listener)
+       thread(start=true) {//서브스레드
+           Thread.sleep(3000)
+           runOnUiThread{
+               showProgress(false)
+           }
+       }
+    }
 
+    fun showProgress(show: Boolean){
+//        if(show){
+//            binding.progressLayout.visibility = View.VISIBLE
+//        }else{
+//            binding.progressLayout.visibility = View.GONE
+//        }
 
+        binding.progressLayout.visibility = if(show) View.VISIBLE else View.GONE
     }
 }
