@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //array [1,5,2,6,3,7,4]
+//commands [[2,5,3],[4,4,1],[1,7,3]]
+
+function solution() {
+
+    var array = [];
+    var commands = [];
+    array = [1,5,2,6,3,7,4];
+    commands =  [[2,5,3],[4,4,1],[1,7,3]];
+
+    var answer = [];
+    
+    var Arri = [];
+    var Arrj = [];
+    var Arrk = [];
+
+    var newArr = []; //재정렬 [[],[],[]]
+    
+    var comLen = 0;
+    comLen = commands.length;
+    
+    for(var i=0; i<comLen; i++){
+        Arri[i] = commands[i][0];
+        Arrj[i] = commands[i][1];
+        Arrk[i] = commands[i][2];
+    }
+    
+    //재배열 완료
+    // console.log('Arri[i] = ' + Arri);
+    // console.log('Arrj[i] = ' + Arrj);
+    // console.log('Arrk[i] = ' + Arrk);
+    
+    
+    for(var a = 0; a<comLen; a++){
+        newArr[a] = array.slice(Arri[a]-1, Arrj[a]);
+    }
+
+    // console.log('newArr[i] = ' + newArr.length);
+
+    //작은수 > 큰수 재정의
+    for(var x =0; x<newArr.length; x++){
+
+        var minArrLen = 0; //배열안의 배열 길이수
+        newArr[x] =  newArr[x].sort();
+
+    }
+
+    //console.log(newArr);
+    //console.log(Arrk);
+
+    var answer = [];
+
+    for(var i=0; i<Arrk.length; i++){
+        var len = Arrk[i]-1;
+        answer[i] = newArr[i][len];
+    }
+    console.log(answer);
+}
+
+</script>
+<body>
+    <button onclick="solution();">tttt</button>
+</body>
+</html>

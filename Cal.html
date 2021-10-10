@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="Ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<script>
+
+    function selectCal(strVal){
+        var strMsg = "";
+        strMsg = strVal;
+        strMsg = document.getElementById("calVue").value + strMsg;
+        document.getElementById("calVue").value = strMsg;
+
+        fnCal(strMsg);
+    }
+
+    function fnCal(calValue){
+        var index = 0;
+        var newCalval = "";
+        var arr = [];
+        var newArr = "";
+
+
+        calValue = calValue.replaceAll('+','|+|');
+        calValue = calValue.replaceAll('*','|*|');
+        calValue = calValue.replaceAll('-','|-|');
+        calValue = calValue.replaceAll('/','|/|');
+
+        newArr = calValue.split("|");
+
+        console.log(newArr);
+
+        if(newArr.indexOf("*") > 0){
+            var int = 0;
+            int = newArr.indexOf("*");
+            var newCal = 0;
+ 
+            newCal = parseInt(newArr[int-1]) * parseInt(newArr[int+1]);
+
+            newArr.splice(int-1,1);
+            newArr.splice(int-1,1);
+            newArr.splice(int-1,1);
+
+            newArr.splice(int-1 ,0 ,newCal);
+        }else if(newArr.indexOf("/") > 0){
+
+            var int = 0;
+            int = newArr.indexOf("/");
+            var newCal = 0;
+ 
+            newCal = parseInt(newArr[int-1]) / parseInt(newArr[int+1]);
+
+            newArr.splice(int-1,1);
+            newArr.splice(int-1,1);
+            newArr.splice(int-1,1);
+
+            newArr.splice(int-1 ,0 ,newCal);
+        }
+
+        //for(var i=0; i<newArr.length + 1; i++){
+        while(newArr.length > 1){
+            if(newArr.indexOf("*") > 0){
+                var int = 0;
+                int = newArr.indexOf("*");
+                var newCal = 0;
+    
+                newCal = parseInt(newArr[int-1]) * parseInt(newArr[int+1]);
+
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+
+                newArr.splice(int-1 ,0 ,newCal);
+            }else if(newArr.indexOf("/") > 0){
+
+                var int = 0;
+                int = newArr.indexOf("/");
+                var newCal = 0;
+    
+                newCal = parseInt(newArr[int-1]) / parseInt(newArr[int+1]);
+
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+
+                newArr.splice(int-1 ,0 ,newCal);
+            }else if(newArr.indexOf("-") > 0){
+                var int = 0;
+                int = newArr.indexOf("-");
+                var newCal = 0;
+    
+                newCal = parseInt(newArr[int-1]) - parseInt(newArr[int+1]);
+
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+
+                newArr.splice(int-1 ,0 ,newCal);
+            }else if(newArr.indexOf("+") > 0){
+                var int = 0;
+                int = newArr.indexOf("+");
+                var newCal = 0;
+    
+                newCal = parseInt(newArr[int-1]) + parseInt(newArr[int+1]);
+
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+                newArr.splice(int-1,1);
+
+                newArr.splice(int-1 ,0 ,newCal);
+            }
+        }
+            
+        //}
+
+        console.log('fin = ' + newArr);
+        //document.getElementById("calVueTreu").value = newArr[0];
+
+        getData(newArr);
+    }
+
+    function getData(newArr){
+        document.getElementById("calVueTrue").value = newArr[0];
+    }
+
+
+
+
+</script>
+<body>
+    <input type="text" name="calVue" id="calVue" >
+    <input type="text" name="calVue" id="calVueTrue" >
+    <br/>
+    <br/>
+
+    <input type="button" name="calValue1" id="calValue1" value="1" onclick="selectCal('1');">
+    <input type="button" name="calValue2" id="calValue2" value="2" onclick="selectCal('2');">
+    <input type="button" name="calValue3" id="calValue3" value="3" onclick="selectCal('3');">
+    <input type="button" name="calValuePlus" value="+" onclick="selectCal('+');">
+    <br/>
+    <input type="button" name="calValue4" value="4" onclick="selectCal('4');">
+    <input type="button" name="calValue5" value="5" onclick="selectCal('5');">
+    <input type="button" name="calValue6" value="6" onclick="selectCal('6');">
+    <input type="button" name="calValueMinus" value="-" onclick="selectCal('-');">
+    <br/>
+    <input type="button" name="calValue7" value="7" onclick="selectCal('7');">
+    <input type="button" name="calValue8" value="8" onclick="selectCal('8');">
+    <input type="button" name="calValue9" value="9" onclick="selectCal('9');">
+    <input type="button" name="calValueNanum" value="/" onclick="selectCal('/');">
+
+    <br/>
+    <input type="button" name="" value="  ">
+    <input type="button" name="calValue0" value="0" onclick="selectCal('0');">
+    <input type="button" name="calValueAnswer" value="=" onclick="selectCal('=');">
+    <input type="button" name="calValueGop" value="*" onclick="selectCal('*');">
+
+</body>
+</html>
